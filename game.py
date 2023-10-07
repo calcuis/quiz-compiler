@@ -51,7 +51,7 @@ class Quiz:
         for question, user_answer in zip(self.questions, self.user_answers):
             if user_answer == question['answer']:
                 score += 1
-        messagebox.showinfo('Quiz Result', f'Score: {score/len(self.questions)}%\nRatio: {score}/{len(self.questions)}')
+        messagebox.showinfo('Quiz Result', f'Score: {score/len(self.questions)*100}%\nRatio: {score}/{len(self.questions)}')
         self.master.destroy()
 
     def display_option(self):
