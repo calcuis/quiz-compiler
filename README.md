@@ -1,4 +1,4 @@
 ## Quiz Game
-**Game:** quiz
+**Game:** quiz panel
 
 **Editor:** item management system
