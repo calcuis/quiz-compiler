@@ -46,14 +46,6 @@ class Quiz:
         else:
             self.evaluate_quiz()
 
-    def evaluate_quiz(self):
-        score = 0
-        for question, user_answer in zip(self.questions, self.user_answers):
-            if user_answer == question['answer']:
-                score += 1
-        messagebox.showinfo('Quiz Result', f'Score: {score/len(self.questions)*100}%\nRatio: {score}/{len(self.questions)}')
-        self.master.destroy()
-
     def display_option(self):
         ypos = 80
         for i in range(4):
@@ -61,6 +53,14 @@ class Quiz:
             option_button = tk.Radiobutton(self.master,text=question[chr(97+i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(97+i))
             option_button.place(x=50,y=ypos)
             ypos+=25
+
+    def evaluate_quiz(self):
+        score = 0
+        for question, user_answer in zip(self.questions, self.user_answers):
+            if user_answer == question['answer']:
+                score += 1
+        messagebox.showinfo('Quiz Result', f'Score: {int(score/len(self.questions)*100)}%\nRatio: {score}/{len(self.questions)}')
+        self.master.destroy()
 
     def start_quiz(self):
         self.var = tk.StringVar()
