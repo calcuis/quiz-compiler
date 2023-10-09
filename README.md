@@ -36,4 +36,4 @@ This Python code defines a simple quiz application using the tkinter library for
 
 The application allows the user to take a quiz with multiple-choice questions, providing feedback on each answer and displaying the final score at the end. The questions and options are loaded from a JSON file (questions.json).
 
-*Please refer to xxx for Editor's code.
+*Please refer to item-editor-json repo for Editor's code review.
