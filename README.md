@@ -34,6 +34,8 @@ This Python code (game.py) defines a simple quiz application using the `tkinter`
 - Sets up the GUI window, including title and dimensions.
 - Starts the tkinter main event loop with `root.mainloop()` to handle user interactions.
 
+**Summary**
+
 The application allows the user to take a quiz with multiple-choice questions, providing feedback on each answer and displaying the final score at the end. The questions and options are loaded from a JSON file (questions.json).
 
 *Please refer to item-editor-json repo for Editor's code review.
