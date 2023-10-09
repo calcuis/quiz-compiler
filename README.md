@@ -10,8 +10,8 @@ This Python code (game.py) defines a simple quiz application using the tkinter l
 
 **Imports:**
 - import `json`: Allows working with JSON data.
-- import `tkinter` as `tk`: Imports the tkinter library for creating the GUI.
-- from `tkinter` import messagebox: Imports a specific function from tkinter to display message boxes.
+- import `tkinter` as `tk`: Imports the `tkinter` library for creating the GUI.
+- from `tkinter` import `messagebox`: Imports a specific function from `tkinter` to display message boxes.
 
 **Quiz Class:**
 - The Quiz class represents the quiz application.
