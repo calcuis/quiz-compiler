@@ -22,9 +22,9 @@ This Python code (game.py) defines a simple quiz application using the `tkinter`
 - `load_questions(self, filename)`: Loads questions from a JSON file.
 - `create_widgets(self)`: Creates GUI widgets (question label).
 - `display_question(self)`: Displays the current question.
+- `display_option(self)`: Displays the answer options for the current question.
 - `get_user_answer(self)`: Gets the user's answer and processes it.
 - `next_question(self)`: Moves to the next question or ends the quiz if all questions have been answered.
-- `display_option(self)`: Displays the answer options for the current question.
 - `evaluate_quiz(self)`: Evaluates the quiz and displays the user's score and ratio of correct answers.
 - `start_quiz(self)`: Initializes the quiz, displays the first question, and sets up the interface.
 
