@@ -1,6 +1,8 @@
-import json
+import json, time
 import tkinter as tk
 from tkinter import messagebox
+
+countdownstatue = True
 
 class Quiz:
     def __init__(self, master):
@@ -35,14 +37,19 @@ class Quiz:
         self.user_answers.append(user_answer)
         self.next_question()
 
-        self.var.set(0)
-
     def next_question(self):
         if self.current_question_index < len(self.questions) - 1:
             self.current_question_index += 1
             print(f'Progress: {self.current_question_index}/{len(self.questions)}')
             self.display_question()
             self.display_option()
+            global countdownstatue
+            countdownstatue = False
+            self.var.set(0)
+            self.mins.set('01')
+            self.sec.set('00')
+            countdownstatue = True
+            self.countdowntimer()
         else:
             self.evaluate_quiz()
 
@@ -55,6 +62,8 @@ class Quiz:
             ypos+=25
 
     def evaluate_quiz(self):
+        global countdownstatue
+        countdownstatue = False
         score = 0
         for question, user_answer in zip(self.questions, self.user_answers):
             if user_answer == question['answer']:
@@ -68,8 +77,37 @@ class Quiz:
         self.display_question()
         self.display_option()
 
-        submit_button = tk.Button(self.master,text='Next',font=("Calibri",12),command=self.get_user_answer)
-        submit_button.place(x=250,y=200)
+        tk.Button(self.master,text='Next',font=("Calibri",12),command=self.get_user_answer).place(x=250,y=200)
+        
+        self.mins = tk.StringVar()
+        tk.Label(textvariable=self.mins,width=2,font='Calibri').place(x=0, y=0)
+
+        tk.Label(text=":",font='Calibri').place(x=20, y=0)
+
+        self.sec = tk.StringVar()
+        tk.Label(textvariable=self.sec,width=2,font='Calibri').place(x=30, y=0)
+
+        self.mins.set('01')
+        self.sec.set('00')
+        self.countdowntimer()
+
+    def countdowntimer(self):
+        times = int(self.mins.get()) * 60 + int(self.sec.get())
+        while times > -1:
+            if (not countdownstatue):
+                break
+
+            minute, second = (times // 60, times % 60)
+            self.sec.set(second)
+            self.mins.set(minute)
+
+            root.update()
+            time.sleep(1)
+            
+            if (times == 0):
+                messagebox.showinfo("Countdown Timer", "Time's up!")
+                self.get_user_answer()
+            times -= 1
 
 if __name__ == '__main__':
     root = tk.Tk()
