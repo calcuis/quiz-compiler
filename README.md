@@ -1,7 +1,7 @@
 ## Quiz Game
-*You should compile your itemset via `Editor` first before kicking start with the `Quiz`.
-
 **Time limit approach was implemented (one minute for each question) in the latest version.
+
+*You should compile your itemset via `Editor` first before kicking start with the `Quiz`.
 
 **Game:** Quiz
 
