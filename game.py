@@ -78,6 +78,7 @@ class Quiz:
         self.display_option()
 
         tk.Button(self.master,text='Next',font=("Calibri",12),command=self.get_user_answer).place(x=250,y=200)
+        tk.Button(self.master,text='Quit',font=("Calibri",12),command=self.quitbutton).place(x=555,y=0)
         
         self.mins = tk.StringVar()
         tk.Label(textvariable=self.mins,width=2,font='Calibri').place(x=0, y=0)
@@ -90,6 +91,7 @@ class Quiz:
         self.mins.set('01')
         self.sec.set('00')
         self.countdowntimer()
+
 
     def countdowntimer(self):
         times = int(self.mins.get()) * 60 + int(self.sec.get())
@@ -109,10 +111,16 @@ class Quiz:
                 self.get_user_answer()
             times -= 1
 
+    def quitbutton(self):
+        global countdownstatue
+        countdownstatue = False
+        quit()
+
 if __name__ == '__main__':
     root = tk.Tk()
     root.title('Quiz')
     root.geometry("600x300")
+    root.resizable(False, False)
     quiz = Quiz(root)
     quiz.start_quiz()
     root.mainloop()
