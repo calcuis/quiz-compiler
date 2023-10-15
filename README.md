@@ -1,7 +1,7 @@
 ## Quiz Game
 **You should compile your itemset via `Editor` first before kicking start with the `Quiz`.
 
-**Latest update(s):**
+**Latest updates:**
 - User's responses were logged in a test file (results.txt).
 - Time limit approach was implemented (two minutes for each question).
 - Quit button was added to terminate the game peacefully.
