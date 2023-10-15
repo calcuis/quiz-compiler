@@ -37,7 +37,7 @@ This Python code (game.py) defines a simple quiz application using the `tkinter`
 - Creates a `tkinter` window (root) for the quiz application.
 - Initializes a Quiz object and starts the quiz using the `start_quiz()` method.
 - Sets up the GUI window, including title and dimensions.
-- Starts the tkinter main event loop with `root.mainloop()` to handle user interactions.
+- Starts the `tkinter` main event loop with `root.mainloop()` to handle user interactions.
 
 **Summary**
 
