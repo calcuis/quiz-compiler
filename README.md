@@ -3,7 +3,7 @@
 
 **Latest update(s):**
 - User's responses were logged in a test file (results.txt).
-- Time limit approach was implemented (one minute for each question).
+- Time limit approach was implemented (two minutes for each question).
 - Quit button was added to terminate the game peacefully.
 
 **Game:** Quiz
