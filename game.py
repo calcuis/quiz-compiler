@@ -31,8 +31,10 @@ class Quiz:
 
     def get_user_answer(self):
         user_answer = self.var.get()
+
         with open ('results.txt','a') as file:
             file.write(user_answer)
+
         question = self.questions[self.current_question_index]
         if user_answer != question['answer']:
             messagebox.showinfo("Sorry", f"The correct answer is option {question['answer']}")
@@ -48,7 +50,7 @@ class Quiz:
             global countdownstatue
             countdownstatue = False
             self.var.set(0)
-            self.mins.set('01')
+            self.mins.set('02')
             self.sec.set('00')
             countdownstatue = True
             self.countdowntimer()
@@ -72,8 +74,10 @@ class Quiz:
                 score += 1
         messagebox.showinfo('Quiz Result', f'Score: {int(score/len(self.questions)*100)}%\nRatio: {score}/{len(self.questions)}')
         print("Finishing up..")
+
         with open ('results.txt','a') as file:
-            file.write(f"\n{score}/{len(self.questions)}\n")
+            file.write(f'\nCorrect Rate: {score}/{len(self.questions)}\nTimestamp: {time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())}\n')
+
         self.master.destroy()
 
     def start_quiz(self):
@@ -93,7 +97,7 @@ class Quiz:
         self.sec = tk.StringVar()
         tk.Label(textvariable=self.sec,width=2,font='Calibri').place(x=30, y=0)
 
-        self.mins.set('01')
+        self.mins.set('02')
         self.sec.set('00')
         self.countdowntimer()
 
@@ -112,13 +116,15 @@ class Quiz:
             time.sleep(1)
             
             if (times == 0):
-                messagebox.showinfo("Countdown Timer", "Time's up!")
+                messagebox.showinfo("Timer", "Time's up!")
                 self.get_user_answer()
             times -= 1
 
     def quitbutton(self):
         global countdownstatue
         countdownstatue = False
+        with open ('results.txt','a') as file:
+            file.write(f'\nTerminated by User\nTimestamp: {time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())}\n')
         quit()
 
 if __name__ == '__main__':
