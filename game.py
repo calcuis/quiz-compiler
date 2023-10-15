@@ -31,6 +31,8 @@ class Quiz:
 
     def get_user_answer(self):
         user_answer = self.var.get()
+        with open ('results.txt','a') as file:
+            file.write(user_answer)
         question = self.questions[self.current_question_index]
         if user_answer != question['answer']:
             messagebox.showinfo("Sorry", f"The correct answer is option {question['answer']}")
@@ -69,6 +71,9 @@ class Quiz:
             if user_answer == question['answer']:
                 score += 1
         messagebox.showinfo('Quiz Result', f'Score: {int(score/len(self.questions)*100)}%\nRatio: {score}/{len(self.questions)}')
+        print("Finishing up..")
+        with open ('results.txt','a') as file:
+            file.write(f"\n{score}/{len(self.questions)}\n")
         self.master.destroy()
 
     def start_quiz(self):
