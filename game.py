@@ -73,7 +73,7 @@ class Quiz:
             if user_answer == question['answer']:
                 score += 1
         messagebox.showinfo('Quiz Result', f'Score: {int(score/len(self.questions)*100)}%\nRatio: {score}/{len(self.questions)}')
-        print("Finishing up..")
+        print("Finishing up...")
 
         with open ('results.txt','a') as file:
             file.write(f'\nCorrect Rate: {score}/{len(self.questions)}\nTimestamp: {time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())}\n')
@@ -123,8 +123,10 @@ class Quiz:
     def quitbutton(self):
         global countdownstatue
         countdownstatue = False
+
         with open ('results.txt','a') as file:
             file.write(f'\nTerminated by User\nTimestamp: {time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())}\n')
+            
         quit()
 
 if __name__ == '__main__':
