@@ -11,7 +11,7 @@
 **Editor:** Item Panel
 
 ## code review
-This Python code (game.py) defines a simple quiz application using the `tkinter` library for the GUI. anyHere's a brief explanation of its structure and functionality:
+This Python code (game.py) defines a simple quiz application using the `tkinter` library for the GUI.
 
 **Imports:**
 - import `json`: Allows working with JSON data.
