@@ -86,7 +86,7 @@ class Quiz:
         self.display_question()
         self.display_option()
 
-        tk.Button(self.master,text='Next',font=("Calibri",12),command=self.get_user_answer).place(x=250,y=200)
+        tk.Button(self.master,text='Next',font=("Calibri",12),command=self.get_user_answer).place(x=280,y=220)
         tk.Button(self.master,text='Quit',font=("Calibri",12),command=self.quitbutton).place(x=555,y=0)
         
         self.mins = tk.StringVar()
