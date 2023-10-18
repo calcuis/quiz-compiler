@@ -50,8 +50,6 @@ class Quiz:
             global countdownstatue
             countdownstatue = False
             self.var.set(0)
-            self.mins.set('02')
-            self.sec.set('00')
             countdownstatue = True
             self.countdowntimer()
         else:
@@ -97,12 +95,12 @@ class Quiz:
         self.sec = tk.StringVar()
         tk.Label(textvariable=self.sec,width=2,font='Calibri').place(x=30, y=0)
 
-        self.mins.set('02')
-        self.sec.set('00')
         self.countdowntimer()
 
 
     def countdowntimer(self):
+        self.mins.set('02')
+        self.sec.set('00')
         times = int(self.mins.get()) * 60 + int(self.sec.get())
         while times > -1:
             if (not countdownstatue):
@@ -123,6 +121,7 @@ class Quiz:
     def quitbutton(self):
         global countdownstatue
         countdownstatue = False
+        print("Terminating...")
 
         with open ('results.txt','a') as file:
             file.write(f'\nTerminated by User\nTimestamp: {time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())}\n')
