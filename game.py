@@ -97,7 +97,6 @@ class Quiz:
 
         self.countdowntimer()
 
-
     def countdowntimer(self):
         self.mins.set('02')
         self.sec.set('00')
