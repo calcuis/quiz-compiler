@@ -3,7 +3,7 @@
 
 **Latest updates:**
 - Reverse option order randomly.
-- Log user's responses in a text file (results.txt).
+- Log user's response in a text file (results.txt).
 - Implement time limit/restriction (two minutes for each question).
 - Add `Quit` button to terminate the game anytime.
 
