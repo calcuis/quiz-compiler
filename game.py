@@ -1,4 +1,4 @@
-import json, time
+import json, time, random
 import tkinter as tk
 from tkinter import messagebox
 
@@ -37,7 +37,7 @@ class Quiz:
 
         question = self.questions[self.current_question_index]
         if user_answer != question['answer']:
-            messagebox.showinfo("Sorry", f"The correct answer is option {question['answer']}")
+            messagebox.showinfo("Sorry", f"The correct answer is: {question[question['answer']]}")
         self.user_answers.append(user_answer)
         self.next_question()
 
@@ -57,11 +57,18 @@ class Quiz:
 
     def display_option(self):
         ypos = 80
-        for i in range(4):
-            question = self.questions[self.current_question_index]
-            option_button = tk.Radiobutton(self.master,text=question[chr(97+i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(97+i))
-            option_button.place(x=50,y=ypos)
-            ypos+=25
+        if random.randint(0, 1)==0:
+            for i in range(4):
+                question = self.questions[self.current_question_index]
+                option_button = tk.Radiobutton(self.master,text=question[chr(97+i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(97+i))
+                option_button.place(x=50,y=ypos)
+                ypos+=25
+        else:
+            for i in range(4):
+                question = self.questions[self.current_question_index]
+                option_button = tk.Radiobutton(self.master,text=question[chr(100-i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(100-i))
+                option_button.place(x=50,y=ypos)
+                ypos+=25
 
     def evaluate_quiz(self):
         global countdownstatue
