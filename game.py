@@ -57,7 +57,12 @@ class Quiz:
 
     def display_option(self):
         ypos = 80
-        if random.randint(0, 1)==0:
+        order = random.randint(0, 1)
+
+        with open ('results.txt','a') as file:
+            file.write(f'[{order}]')
+
+        if order==0:
             for i in range(4):
                 question = self.questions[self.current_question_index]
                 option_button = tk.Radiobutton(self.master,text=question[chr(97+i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(97+i))
