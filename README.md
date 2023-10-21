@@ -2,9 +2,10 @@
 **You should compile your itemset via `Editor` first before kicking start with the `Quiz`.
 
 **Latest updates:**
-- User's responses were logged in a text file (results.txt).
-- Time limit approach was implemented (two minutes for each question).
-- `Quit` button was added to terminate the game anytime.
+- Reverse option order randomly.
+- Log user's responses in a text file (results.txt).
+- Implement time limit/restriction (two minutes for each question).
+- Add `Quit` button to terminate the game anytime.
 
 **Game:** Quiz
 
