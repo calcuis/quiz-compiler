@@ -65,23 +65,32 @@ class Quiz:
 
     def display_option(self):
         ypos = 80
-        order = random.randint(0, 1)
+        question = self.questions[self.current_question_index]
 
-        with open ('results.txt','a') as file:
-            file.write(f'[{order}]')
+        if question[chr(100)]=="all of the above.":
+            with open ('results.txt','a') as file:
+                file.write('[0]')
 
-        if order==0:
             for i in range(4):
-                question = self.questions[self.current_question_index]
                 option_button = tk.Radiobutton(self.master,text=question[chr(97+i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(97+i))
                 option_button.place(x=50,y=ypos)
                 ypos+=25
         else:
-            for i in range(4):
-                question = self.questions[self.current_question_index]
-                option_button = tk.Radiobutton(self.master,text=question[chr(100-i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(100-i))
-                option_button.place(x=50,y=ypos)
-                ypos+=25
+            order = random.randint(0, 1)
+
+            with open ('results.txt','a') as file:
+                file.write(f'[{order}]')
+
+            if order==0:
+                for i in range(4):
+                    option_button = tk.Radiobutton(self.master,text=question[chr(97+i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(97+i))
+                    option_button.place(x=50,y=ypos)
+                    ypos+=25
+            else:
+                for i in range(4):
+                    option_button = tk.Radiobutton(self.master,text=question[chr(100-i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(100-i))
+                    option_button.place(x=50,y=ypos)
+                    ypos+=25
 
     def evaluate_quiz(self):
         global countdownstatue
@@ -90,7 +99,7 @@ class Quiz:
         for question, user_answer in zip(self.questions, self.user_answers):
             if user_answer == question['answer']:
                 score += 1
-        messagebox.showinfo('Quiz Result', f'Score: {int(score/len(self.questions)*100)}%\nRatio: {score}/{len(self.questions)}')
+        messagebox.showinfo('Result', f'Score: {int(score/len(self.questions)*100)}%\nRatio: {score}/{len(self.questions)}')
         print("Finishing up...")
 
         with open ('results.txt','a') as file:
