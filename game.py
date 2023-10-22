@@ -1,4 +1,4 @@
-import json, time, random
+import json, time, random, concurrent.futures
 import tkinter as tk
 from tkinter import messagebox
 
@@ -30,6 +30,9 @@ class Quiz:
         self.question_label.config(text=question['question'],font = ("Calibri",12,"bold"))
 
     def get_user_answer(self):
+        global countdownstatue
+        countdownstatue = False
+
         user_answer = self.var.get()
 
         with open ('results.txt','a') as file:
@@ -38,6 +41,8 @@ class Quiz:
         question = self.questions[self.current_question_index]
         if user_answer != question['answer']:
             messagebox.showinfo("Sorry", f"The correct answer is: {question[question['answer']]}")
+        else:
+            messagebox.showinfo("Correct", "Well Done!")
         self.user_answers.append(user_answer)
         self.next_question()
 
@@ -46,12 +51,15 @@ class Quiz:
             self.current_question_index += 1
             print(f'Progress: {self.current_question_index}/{len(self.questions)}')
             self.display_question()
-            self.display_option()
+
             global countdownstatue
-            countdownstatue = False
             self.var.set(0)
             countdownstatue = True
-            self.countdowntimer()
+
+            pool = concurrent.futures.ThreadPoolExecutor(max_workers=2)
+            pool.submit(self.display_option)
+            pool.submit(self.countdowntimer)
+
         else:
             self.evaluate_quiz()
 
@@ -94,20 +102,18 @@ class Quiz:
         self.var = tk.StringVar()
         self.var.set(0)
         self.display_question()
-        self.display_option()
 
         tk.Button(self.master,text='Next',font=("Calibri",12),command=self.get_user_answer).place(x=280,y=220)
         tk.Button(self.master,text='Quit',font=("Calibri",12),command=self.quitbutton).place(x=555,y=0)
-        
         self.mins = tk.StringVar()
         tk.Label(textvariable=self.mins,width=2,font='Calibri').place(x=0, y=0)
-
         tk.Label(text=":",font='Calibri').place(x=20, y=0)
-
         self.sec = tk.StringVar()
         tk.Label(textvariable=self.sec,width=2,font='Calibri').place(x=30, y=0)
 
-        self.countdowntimer()
+        pool = concurrent.futures.ThreadPoolExecutor(max_workers=2)
+        pool.submit(self.display_option)
+        pool.submit(self.countdowntimer)
 
     def countdowntimer(self):
         self.mins.set('02')
@@ -122,7 +128,7 @@ class Quiz:
             self.mins.set(minute)
 
             root.update()
-            time.sleep(1)
+            time.sleep(0.5)
             
             if (times == 0):
                 messagebox.showinfo("Timer", "Time's up!")
@@ -143,7 +149,6 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title('Quiz')
     root.geometry("600x300")
-    root.overrideredirect(True)
     quiz = Quiz(root)
     quiz.start_quiz()
     root.mainloop()
