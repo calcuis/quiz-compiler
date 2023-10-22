@@ -42,7 +42,7 @@ class Quiz:
         if user_answer != question['answer']:
             messagebox.showinfo("Sorry", f"The correct answer is: {question[question['answer']]}")
         else:
-            messagebox.showinfo("Correct", "Well Done!")
+            time.sleep(0.5)
         self.user_answers.append(user_answer)
         self.next_question()
 
@@ -104,7 +104,7 @@ class Quiz:
         self.display_question()
 
         tk.Button(self.master,text='Next',font=("Calibri",12),command=self.get_user_answer).place(x=280,y=220)
-        tk.Button(self.master,text='Quit',font=("Calibri",12),command=self.quitbutton).place(x=555,y=0)
+        tk.Button(self.master,text='Quit',font=("Calibri",12),command=self.quitbutton).place(x=550,y=0)
         self.mins = tk.StringVar()
         tk.Label(textvariable=self.mins,width=2,font='Calibri').place(x=0, y=0)
         tk.Label(text=":",font='Calibri').place(x=20, y=0)
@@ -149,7 +149,7 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title('Quiz')
     root.geometry("600x300")
-    # root.overrideredirect(True)
+    root.resizable(False, False)
     quiz = Quiz(root)
     quiz.start_quiz()
     root.mainloop()
