@@ -149,6 +149,7 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title('Quiz')
     root.geometry("600x300")
+    # root.overrideredirect(True)
     quiz = Quiz(root)
     quiz.start_quiz()
     root.mainloop()
