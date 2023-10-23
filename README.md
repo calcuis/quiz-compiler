@@ -2,7 +2,7 @@
 **You should compile your itemset via `Editor` first before kicking start with the `Quiz`.
 
 **Latest updates:**
-- Randomize item order and record all response by item id.
+- Randomize item order and record all responses by item id.
 - Reverse option order randomly (if the last option is not 'all of the above.').
 - Log user's response in a text file (results.txt).
 - Implement time limit/restriction (two minutes for each question).
