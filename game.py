@@ -67,7 +67,7 @@ class Quiz:
         ypos = 80
         question = self.questions[self.current_question_index]
 
-        if question[chr(100)]=="all of the above.":
+        if question[chr(100)]=="all of the above." or question[chr(100)]=="All of the above." or question[chr(100)]=="All of the above":
             with open ('results.txt','a') as file:
                 file.write('[0]')
 
