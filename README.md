@@ -3,7 +3,7 @@
 
 **Latest updates:**
 - Randomize item order and record all responses by item id.
-- Reverse option order randomly (if the last option is not 'all of the above.').
+- Reverse option order randomly (if the last option is not 'All of the above').
 - Log user's response in a text file (results.txt).
 - Implement time limit/restriction (two minutes for each question).
 - Add `Quit` button to terminate the game anytime.
