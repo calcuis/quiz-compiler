@@ -16,7 +16,20 @@ class Quiz:
         try:
             with open(filename, 'r') as file:
                 questions = json.load(file)
+            
+            data_length = len(questions)
+            random_indices = list(range(data_length))
+            random.shuffle(random_indices)
+            randomized_data = [questions[i] for i in random_indices]
+
+            with open('randomized_questions.json', 'w') as output_file:
+                json.dump(randomized_data, output_file, indent=4)
+
+            with open('randomized_questions.json', 'r') as file2:
+                questions = json.load(file2)
+
             return questions
+
         except FileNotFoundError:
             print("Please create your item bank with the item editor.")
             quit()
@@ -34,11 +47,11 @@ class Quiz:
         countdownstatue = False
 
         user_answer = self.var.get()
+        question = self.questions[self.current_question_index]
 
         with open ('results.txt','a') as file:
-            file.write(user_answer)
+            file.write(f"[{question['id']}]{user_answer}\n")
 
-        question = self.questions[self.current_question_index]
         if user_answer != question['answer']:
             messagebox.showinfo("Sorry", f"The correct answer is: {question[question['answer']]}")
         else:
@@ -103,7 +116,7 @@ class Quiz:
         print("Finishing up...")
 
         with open ('results.txt','a') as file:
-            file.write(f'\nCorrect Rate: {score}/{len(self.questions)}\nTimestamp: {time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())}\n')
+            file.write(f'Correct Rate: {score}/{len(self.questions)}\nTimestamp: {time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())}\n')
 
         self.master.destroy()
 
