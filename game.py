@@ -80,7 +80,7 @@ class Quiz:
         ypos = 80
         question = self.questions[self.current_question_index]
 
-        if question[chr(100)]=="all of the above." or question[chr(100)]=="All of the above." or question[chr(100)]=="All of the above":
+        if question[chr(100)]=="all of the above" or question[chr(100)]=="All of the above" or question[chr(100)]=="all of the above." or question[chr(100)]=="All of the above.":
             with open ('results.txt','a') as file:
                 file.write('[0]')
 
@@ -89,7 +89,7 @@ class Quiz:
                 option_button.place(x=50,y=ypos)
                 ypos+=25
         else:
-            order = random.randint(0, 1)
+            order = random.randint(0, 3)
 
             with open ('results.txt','a') as file:
                 file.write(f'[{order}]')
@@ -99,9 +99,27 @@ class Quiz:
                     option_button = tk.Radiobutton(self.master,text=question[chr(97+i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(97+i))
                     option_button.place(x=50,y=ypos)
                     ypos+=25
-            else:
+            elif order==1:
                 for i in range(4):
                     option_button = tk.Radiobutton(self.master,text=question[chr(100-i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(100-i))
+                    option_button.place(x=50,y=ypos)
+                    ypos+=25
+            elif order==2:
+                for i in range(2):
+                    option_button = tk.Radiobutton(self.master,text=question[chr(99+i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(99+i))
+                    option_button.place(x=50,y=ypos)
+                    ypos+=25
+                for j in range(2):
+                    option_button = tk.Radiobutton(self.master,text=question[chr(97+j)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(97+j))
+                    option_button.place(x=50,y=ypos)
+                    ypos+=25
+            else:
+                for i in range(2):
+                    option_button = tk.Radiobutton(self.master,text=question[chr(98-i)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(98-i))
+                    option_button.place(x=50,y=ypos)
+                    ypos+=25
+                for j in range(2):
+                    option_button = tk.Radiobutton(self.master,text=question[chr(100-j)],font=("Calibri",12),width=50,anchor='w',variable=self.var,value=chr(100-j))
                     option_button.place(x=50,y=ypos)
                     ypos+=25
 
@@ -126,12 +144,12 @@ class Quiz:
         self.display_question()
 
         tk.Button(self.master,text='Next',font=("Calibri",12),command=self.get_user_answer).place(x=280,y=220)
-        tk.Button(self.master,text='Quit',font=("Calibri",12),command=self.quitbutton).place(x=550,y=0)
+        tk.Button(self.master,text='🤻',font=("Calibri",12),command=self.quitbutton).place(x=0,y=0)
         self.mins = tk.StringVar()
-        tk.Label(textvariable=self.mins,width=2,font='Calibri').place(x=0, y=0)
-        tk.Label(text=":",font='Calibri').place(x=20, y=0)
+        tk.Label(textvariable=self.mins,width=2,font='Calibri').place(x=25, y=0)
+        tk.Label(text=":",font='Calibri').place(x=45, y=0)
         self.sec = tk.StringVar()
-        tk.Label(textvariable=self.sec,width=2,font='Calibri').place(x=30, y=0)
+        tk.Label(textvariable=self.sec,width=2,font='Calibri').place(x=55, y=0)
 
         pool = concurrent.futures.ThreadPoolExecutor(max_workers=2)
         pool.submit(self.display_option)
@@ -171,7 +189,6 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title('Quiz')
     root.geometry("600x300")
-    root.resizable(False, False)
     quiz = Quiz(root)
     quiz.start_quiz()
     root.mainloop()
