@@ -2,7 +2,7 @@
 **You should compile your itemset via `Editor` first before kicking start with the `Quiz`.
 
 **Latest updates:**
-- Randomize item order and record all responses by item id.
+- Randomize item order (save it as an intermediate file - randomized_questions.json) and record all responses by item id (this will be done in results.txt).
 - Randomize option order (if the last option is not 'All of the above').
 - Log user's response in a text file (results.txt).
 - Implement time limit/restriction (two minutes for each question).
