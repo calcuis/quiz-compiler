@@ -145,6 +145,7 @@ class Quiz:
 
         tk.Button(self.master,text='Next',font=("Calibri",12),command=self.get_user_answer).place(x=280,y=220)
         tk.Button(self.master,text='🤻',font=("Calibri",12),command=self.quitbutton).place(x=0,y=0)
+        
         self.mins = tk.StringVar()
         tk.Label(textvariable=self.mins,width=2,font='Calibri').place(x=25, y=0)
         tk.Label(text=":",font='Calibri').place(x=45, y=0)
